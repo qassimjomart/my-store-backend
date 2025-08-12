@@ -1,18 +1,16 @@
-// Файл: /routes/bannerRoutes.js
-
 const express = require('express');
 const router = express.Router();
-
-// Импортируем функции-контроллеры, которые мы создадим на следующем шаге
 const {
   getBanners,
   createBanner,
   updateBanner,
   deleteBanner,
-} = require('../controllers/bannerController');
+} = require('../controllers/bannerController.js');
 
-// Привязываем функции к маршрутам
+// /api/banners
 router.route('/').get(getBanners).post(createBanner);
+
+// /api/banners/:id
 router.route('/:id').put(updateBanner).delete(deleteBanner);
 
 module.exports = router;
