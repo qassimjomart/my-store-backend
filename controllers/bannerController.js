@@ -1,15 +1,13 @@
-// Файл: /controllers/bannerController.js
-
-const Banner = require('../models/bannerModel'); // Наша модель из Шага 1
+const Banner = require('../models/bannerModel.js');
 
 // @desc    Получить все баннеры
 // @route   GET /api/banners
 const getBanners = async (req, res) => {
   try {
-    const banners = await Banner.find({}); // Найти все документы в коллекции Banner
+    const banners = await Banner.find({});
     res.json(banners);
   } catch (error) {
-    res.status(500).json({ message: 'Ошибка сервера' });
+    res.status(500).json({ message: 'Server Error' });
   }
 };
 
@@ -17,8 +15,11 @@ const getBanners = async (req, res) => {
 // @route   POST /api/banners
 const createBanner = async (req, res) => {
   try {
-    // Данные приходят с фронтенда в req.body
     const { name, imageUrl, linkUrl, mainCategory } = req.body;
+
+    if (!name || !imageUrl || !linkUrl || !mainCategory) {
+        return res.status(400).json({ message: 'Please provide all required fields for the banner.' });
+    }
 
     const banner = new Banner({
       name,
@@ -27,10 +28,10 @@ const createBanner = async (req, res) => {
       mainCategory,
     });
 
-    const createdBanner = await banner.save(); // Сохраняем в базу данных
+    const createdBanner = await banner.save();
     res.status(201).json(createdBanner);
   } catch (error) {
-    res.status(400).json({ message: 'Неверные данные для баннера' });
+    res.status(400).json({ message: 'Invalid banner data', error: error.message });
   }
 };
 
@@ -39,7 +40,7 @@ const createBanner = async (req, res) => {
 const updateBanner = async (req, res) => {
   try {
     const { name, imageUrl, linkUrl, mainCategory } = req.body;
-    const banner = await Banner.findById(req.params.id); // Находим баннер по ID из URL
+    const banner = await Banner.findById(req.params.id);
 
     if (banner) {
       banner.name = name || banner.name;
@@ -50,10 +51,10 @@ const updateBanner = async (req, res) => {
       const updatedBanner = await banner.save();
       res.json(updatedBanner);
     } else {
-      res.status(404).json({ message: 'Баннер не найден' });
+      res.status(404).json({ message: 'Banner not found' });
     }
   } catch (error) {
-    res.status(400).json({ message: 'Ошибка при обновлении' });
+    res.status(400).json({ message: 'Error updating banner', error: error.message });
   }
 };
 
@@ -64,13 +65,13 @@ const deleteBanner = async (req, res) => {
     const banner = await Banner.findById(req.params.id);
 
     if (banner) {
-      await banner.deleteOne(); // Используем новый метод .deleteOne()
-      res.json({ message: 'Баннер удален' });
+      await banner.deleteOne(); // Mongoose 7+ uses deleteOne()
+      res.json({ message: 'Banner removed' });
     } else {
-      res.status(404).json({ message: 'Баннер не найден' });
+      res.status(404).json({ message: 'Banner not found' });
     }
   } catch (error) {
-    res.status(500).json({ message: 'Ошибка сервера' });
+    res.status(500).json({ message: 'Server Error', error: error.message });
   }
 };
 
