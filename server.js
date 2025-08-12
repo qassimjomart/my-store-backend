@@ -7,6 +7,7 @@ const dotenv = require('dotenv');
 const productRoutes = require('./routes/productRoutes');
 const userRoutes = require('./routes/userRoutes');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
+const bannerRoutes = require('./routes/bannerRoutes');
 
 // Загружаем переменные из .env файла
 dotenv.config();
@@ -29,6 +30,9 @@ app.use('/api/users', userRoutes);
 // Middleware для обработки ошибок
 app.use(notFound);
 app.use(errorHandler);
+
+// banners
+app.use('/api/banners', bannerRoutes); 
 
 
 const PORT = process.env.PORT || 5000;
