@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 const productRoutes = require('./routes/productRoutes');
 const userRoutes = require('./routes/userRoutes');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
-const bannerRoutes = require('./routes/bannerRoutes.js');
+const bannerRoutes = require('./routes/bannerRoutes');
 
 // Загружаем переменные из .env файла
 dotenv.config();
@@ -23,10 +23,10 @@ app.get('/', (req, res) => {
     res.send('API is running...');
 });
 
-// Используем маршруты для товаров и пользователей и баннеры
+// Используем маршруты для товаров, баннеров и пользователей
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/banners', bannerRoutes);
+app.use('/api/banners', bannerRoutes); 
 
 
 // Middleware для обработки ошибок
