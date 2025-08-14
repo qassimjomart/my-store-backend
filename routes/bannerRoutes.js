@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const {
+import {
   getBanners,
   createBanner,
   updateBanner,
   deleteBanner,
-} = require('../controllers/bannerController.js');
+} from '../controllers/bannerController.js';
 
 // /api/banners
 router.route('/').get(getBanners).post(createBanner);
@@ -13,4 +13,4 @@ router.route('/').get(getBanners).post(createBanner);
 // /api/banners/:id
 router.route('/:id').put(updateBanner).delete(deleteBanner);
 
-module.exports = router;
+export default router;
