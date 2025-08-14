@@ -7,7 +7,7 @@ import bcrypt from 'bcryptjs';
 
 
 
-const User = require('../models/User');
+const User = require('../models/User.js');
 const generateToken = require('../utils/generateToken');
 
 // @desc    Аутентификация пользователя и получение токена
@@ -152,4 +152,5 @@ module.exports = {
     updateUserProfile,
     changeUserPassword
 };
+
 
