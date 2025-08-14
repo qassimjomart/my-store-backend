@@ -1,6 +1,6 @@
 // Файл: my-store-backend/controllers/userController.js
 
-const asyncHandler = require('express-async-handler');
+import asyncHandler from 'express-async-handler';
 import User from '../models/User.js'; // Убедитесь, что путь к модели верный (может быть userModel.js)
 import generateToken from '../utils/generateToken.js';
 import bcrypt from 'bcryptjs';
@@ -152,5 +152,6 @@ module.exports = {
     updateUserProfile,
     changeUserPassword
 };
+
 
 
