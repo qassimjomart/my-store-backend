@@ -1,13 +1,13 @@
 // Файл: my-store-backend/server.js
 
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const productRoutes = require('./routes/productRoutes');
-const userRoutes = require('./routes/userRoutes');
-const { notFound, errorHandler } = require('./middleware/errorMiddleware');
-const bannerRoutes = require('./routes/bannerRoutes');
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import productRoutes from './routes/productRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
+import bannerRoutes from './routes/bannerRoutes.js';
 
 // Загружаем переменные из .env файла
 dotenv.config();
