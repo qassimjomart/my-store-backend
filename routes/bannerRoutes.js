@@ -1,6 +1,11 @@
-import express from 'express';
+const express = require('express');
 const router = express.Router();
-export { getBanners, createBanner, updateBanner, deleteBanner };
+const {
+  getBanners,
+  createBanner,
+  updateBanner,
+  deleteBanner,
+} = require('../controllers/bannerController.js');
 
 // /api/banners
 router.route('/').get(getBanners).post(createBanner);
@@ -8,5 +13,6 @@ router.route('/').get(getBanners).post(createBanner);
 // /api/banners/:id
 router.route('/:id').put(updateBanner).delete(deleteBanner);
 
-export default router;
+module.exports = router;
+
 
