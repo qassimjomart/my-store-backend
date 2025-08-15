@@ -1,7 +1,7 @@
 // Файл: my-store-backend/controllers/userController.js
 
 const User = require('../models/User.js');
-import generateToken from '../utils/generateToken.js';
+const generateToken = require('../utils/generateToken.js');
 import bcrypt from 'bcryptjs';
 
 
@@ -91,6 +91,7 @@ module.exports = {
     updateUserProfile,
     changeUserPassword
 };
+
 
 
 
