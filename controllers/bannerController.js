@@ -1,8 +1,5 @@
 const Banner = require('../models/bannerModel.js');
 
-// test for render 
-
-
 // @desc    Получить все баннеры
 // @route   GET /api/banners
 const getBanners = async (req, res) => {
@@ -84,4 +81,5 @@ module.exports = {
   updateBanner,
   deleteBanner,
 };
+
 
